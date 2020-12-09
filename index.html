@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>demo8dec</title>
 </head>
 <body>
-    <h1>inside man</h1>
+    <h1>The Characters</h1>
+    <div id="container1">
+        <form id="inputForm1">
+            <div class="labelAin">
+            <label for="name">Name of Character</label>
+            <input type="text" name="name" id="name">
+            </div>
+            <br>
+            <div class="labelAin">
+            <label for="attitude">Attitude</label>
+            <input type="text" name="attitude" id="attitude">
+            </div><br>
+            <div class="labelAin">
+            <label for="score">Initial Score</label>
+            <input type="text" name="score" id="score">
+            </div><br>
+
+            <div class="labelAin">
+            <label for="weakness">Main Weakness</label>
+            <input type="text" name="weakness" id="weakness">
+            </div><br>
+            <div class="labelAin">
+            <label for="weakness">Region</label>
+            <input type="text" name="region" id="region">
+            </div><br>
+            <div class="labelAin">
+            <label for="modeOfTravel">Mode of Travel</label>
+            <input type="text" name="modeOfTravel" id="modeOfTravel">
+            </div>
+            <br>
+            <input type="submit" value="SUBMIT" id="subBtn">
+        </form>
+    </div>
+    <div>
+        <label for="getChars">Get All Characters</label>
+        <input type="submit" id="getChars" value="Get Characters">
+    </div>
+    <div id="container2">
+        <!-- <table id="table1"></table> -->
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

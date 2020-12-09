@@ -24,7 +24,7 @@ const myChars = [
     name: "Wild Dog",
     attitude: "bad",
     score: 20,
-    weekness: "road kill",
+    weakness: "road kill",
     region: "south east",
     modeOfTravel: "walk",
   },
@@ -33,7 +33,7 @@ const myChars = [
     name: "willy coyote",
     attitude: "mischief",
     score: 40,
-    weekness: "road runners",
+    weakness: "road runners",
     region: "south west",
     modeOfTravel: "run",
   },
@@ -42,7 +42,7 @@ const myChars = [
     name: "smelly skunk",
     attitude: "dont care",
     score: 10,
-    weekness: "day light",
+    weakness: "day light",
     region: "south west",
     modeOfTravel: "walk",
   },
@@ -51,7 +51,7 @@ const myChars = [
     name: "road runner",
     attitude: "comical",
     score: 120,
-    weekness: "tamalies",
+    weakness: "tamalies",
     region: "south west",
     modeOfTravel: "run",
   },
@@ -60,7 +60,7 @@ const myChars = [
     name: "fat bear",
     attitude: "comical",
     score: 50,
-    weekness: "honey",
+    weakness: "honey",
     region: "west",
     modeOfTravel: "walk",
   },
@@ -128,8 +128,8 @@ server.put("/myChars/:id", (req, res) => {
   if (character.score !== undefined) {
     result[0].score = character.score;
   }
-  if (character.weekness !== undefined) {
-    result[0].weekness = character.weekness;
+  if (character.weakness !== undefined) {
+    result[0].weakness = character.weakness;
   }
   if (character.region !== undefined) {
     result[0].region = character.region;
