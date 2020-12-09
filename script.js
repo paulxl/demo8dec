@@ -16,16 +16,21 @@ document.getElementById("inputForm1").addEventListener("submit", function (e) {
   region = e.target.region.value;
   modeOfTravel = e.target.modeOfTravel.value;
 
-  myChar.push(name, attitude, score, weakness, region, modeOfTravel);
-  inputToBack(myChar);
+  axios
+    .post("https://tlgtest1bypl.herokuapp.com/myChars", {
+      name,
+      attitude,
+      score,
+      weakness,
+      region,
+      modeOfTravel,
+    })
+    .then((res) => {
+      console.log(res.data);
+    });
+
   clearForm();
 });
-function inputToBack(myChar) {
-  // call back end and insert to array
-  axios.post("https://tlgtest1bypl.herokuapp.com/myChars", {
-    myChar,
-  });
-}
 
 document.getElementById("getChars").addEventListener("click", getChars);
 
