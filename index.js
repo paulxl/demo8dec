@@ -11,71 +11,149 @@ server.listen(process.env.PORT || 3000);
 server.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
+//{id:001,
+// name: "wild dog",
+// attitude:"bad",
+// score: 91,
+// weekness: "stinky beer"
+// region: "East"
+// modeOfTravel: "run in circles"}
+const myChars = [
+  {
+    id: "001",
+    name: "Wild Dog",
+    attitude: "bad",
+    score: 20,
+    weekness: "road kill",
+    region: "south east",
+    modeOfTravel: "walk",
+  },
+  {
+    id: "002",
+    name: "willy coyote",
+    attitude: "mischief",
+    score: 40,
+    weekness: "road runners",
+    region: "south west",
+    modeOfTravel: "run",
+  },
+  {
+    id: "003",
+    name: "smelly skunk",
+    attitude: "dont care",
+    score: 10,
+    weekness: "day light",
+    region: "south west",
+    modeOfTravel: "walk",
+  },
+  {
+    id: "004",
+    name: "road runner",
+    attitude: "comical",
+    score: 120,
+    weekness: "tamalies",
+    region: "south west",
+    modeOfTravel: "run",
+  },
+  {
+    id: "005",
+    name: "fat bear",
+    attitude: "comical",
+    score: 50,
+    weekness: "honey",
+    region: "west",
+    modeOfTravel: "walk",
+  },
+];
 
-const employees = []; //[{fName: "Matt", lName: "Sugu", email: "matt.s@amazon.com", role: "sde", eId: "123432"}]
-
-server.post("/employees", (req, res) => {
-  employees.push(req.body);
-  res.send(employees);
+//route to return list of all myChars
+server.get("/myChars", (req, res) => {
+  res.send(myChars);
 });
-
-//route to return list of all employees
-server.get("/employees", (req, res) => {
-  res.send(employees);
-});
-
-//route to return employees by role
-server.get("/employees/:role", (req, res) => {
-  const role = req.params.role;
-  const results = employees.filter(
-    (employee) => employee.role.toUpperCase() === role.toUpperCase()
-  );
-
+server.get("/myChars/name", (req, res) => {
+  const names = req.params.name;
+  const results = [];
+  for (let index = 0; index < myChars.length; index++) {
+    let nameTemp = myChars[index].name;
+    results.push(nameTemp);
+  }
   res.send(results);
 });
 
-//route to return employees by id
-server.get("/employees/:id", (req, res) => {
-  const eId = req.params.id;
-  const results = employees.filter((emp) => emp.eId === eId);
+server.post("/myChars", (req, res) => {
+  myChars.push(req.body);
+  res.send(myChars);
+});
 
+//route to return myChars by role
+server.get("/myChars/attitude/:attitude", (req, res) => {
+  const role = req.params.attitude;
+  //const attitude = myChars.attitude;
+  const results = [];
+  for (let index = 0; index < myChars.length; index++) {
+    const element = myChars[index].attitude;
+    if (element === role) {
+      results.push(myChars[index].name);
+    }
+  }
   res.send(results);
 });
 
-//route to change employees information by id
-server.put("/employees/:id", (req, res) => {
+//route to return myChars by id
+server.get("/myChars/:id", (req, res) => {
+  const cId = req.params.id;
+  let result = "";
+  //const results = myChars.filter((myChars) => myChars.cId === cId);
+  for (let index = 0; index < myChars.length; index++) {
+    const element = myChars[index].id;
+    if (element === cId) {
+      result = myChars[index];
+      //res.send(result);
+    }
+  }
+  res.send(result);
+});
+
+//route to change myChars information by id
+server.put("/myChars/:id", (req, res) => {
   const id = req.params.id;
-  const employee = req.body;
-  let result = employees.filter((emp) => emp.eId === id);
-  if (employee.fName !== undefined) {
-    result[0].fName = employee.fName;
+  const character = req.body;
+  let result = myChars.filter((char1) => char1.cId === id);
+  if (character.name !== undefined) {
+    result[0].name = character.name;
   }
-  if (employee.lName !== undefined) {
-    result[0].lName = employee.lName;
+  if (character.attitude !== undefined) {
+    result[0].attitude = character.attitude;
   }
-  if (employee.email !== undefined) {
-    result[0].email = employee.email;
+  if (character.score !== undefined) {
+    result[0].score = character.score;
   }
-  if (employee.role !== undefined) {
-    result[0].role = employee.role;
+  if (character.weekness !== undefined) {
+    result[0].weekness = character.weekness;
+  }
+  if (character.region !== undefined) {
+    result[0].region = character.region;
+  }
+  if (character.modeOfTravel !== undefined) {
+    result[0].modeOfTravel = character.modeOfTravel;
   }
   res.send(result[0]);
 });
 
-//route to delete employees by id
-server.delete("/employees/:id", (req, res) => {
+//route to delete myChars by id
+server.delete("/myChars/:id", (req, res) => {
   const id = req.params.id;
-  let empIdx = -1;
-  employees.map((emp, idx) => {
-    if (emp.eId === id) {
+  let char1Idx = -1;
+  myChars.map((char1, idx) => {
+    if (char1.cId === id) {
       //if true, found emp to delete
-      empIdx = idx;
+      char1Idx = idx;
       return;
     }
   });
-  if (empIdx === -1) {
-    return res.status(404).send("Employee not found");
+  if (char1Idx === -1) {
+    return res.status(404).send("Character not found");
   }
-  employees.splice(empIdx, 1);
+  myChars.splice(char1Idx, 1);
   res.send({ success: "Success" });
 });
