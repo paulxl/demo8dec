@@ -1,0 +1,30 @@
+body {
+  background-color: #89cff0;
+  color: #215b8f;
+}
+
+.labelAin {
+  display: flex;
+  flex-direction: row;
+  width: 320px;
+
+  justify-content: space-between;
+}
+
+table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#subBtn {
+  background-color: #99ffa5;
+  color: black;
+  font-size: 1.5rem;
+  border-radius: 0.333rem;
+}
+#getChars {
+  background-color: #6fb407;
+  color: black;
+  font-size: 1.5rem;
+  border-radius: 0.333rem;
+}
